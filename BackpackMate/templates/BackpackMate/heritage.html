@@ -1,0 +1,24 @@
+{% extends 'BackpackMate/layout.html' %}
+
+
+{% block body %}
+
+<section style="background-color: rgb(252, 250, 248); padding-top:75px;">
+    {% for center in centers %}
+    <a href = "{% url 'heritage_view' center.id %}">
+    <div class="container" style="display: flex; gap: 20px;flex-wrap: wrap; justify-content: space-between; align-items: center; text-align:justify; margin-top:25px;">
+        <div style="flex: 1;">
+            <h1 style="font-size:2em; color:brown; text-align:center;">{{ center.name }}</h1>
+            <h5 style="color:green; text-align:center;">{{ center.district }}</h5>
+            <a style="text-align:justify;">{{ center.description }}</a>
+        </div>
+        <div style="flex: 1;">
+            <img src="{{ center.venue_img.url }}" alt="map" style="max-width: 100%; height: auto; border-radius:45px;">
+        </div>
+    </div>
+    </a>
+    {% endfor %}
+</section>
+<br style="color:rgb(252, 250, 248);">
+
+{% endblock %}

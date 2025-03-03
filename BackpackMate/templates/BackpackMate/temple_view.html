@@ -1,0 +1,221 @@
+{% extends 'BackpackMate/layout.html' %}
+{% load static %}
+{% block body %}
+<div style="background-color: rgb(252, 250, 248);">
+    <section style="padding: 20px;">
+        <div class="container" style="text-align:justify;">
+            <div style="max-width: 600px; margin: auto; padding-top:5rem;">
+                <img src="{{ temple.venue_img.url }}" alt="{{ temple.name }}" class="temple_image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+            </div>
+            <div style="text-align: center; padding-top:10px;">
+                <h1 style="color: green;">{{ temple.name }}</h1>
+                <a> {{ temple.district }}</a> -
+                <a> {{ temple.zip_code }}</a>
+            </div>
+            <div style="margin: 10px;">
+                <a><strong style="color:green;">Description:</strong> {{ temple.description }}</a>
+                <hr>
+                <a><strong style="color:green;">Architecture:</strong> {{ temple.architecture }}</a>
+                <hr>
+                <a><strong style="color:green;">Major Highlight:</strong> {{ temple.major_high }}</a>
+            </div>
+        </div>
+    </section>
+
+    {% if temple.mapUrl %}
+    <section style="padding: 20px;">
+        <br>
+        <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; text-align:justify;">
+            <div style="flex: 1;">
+                <iframe src="{{ temple.mapUrl }}" class="center_image" style="width: 100%; height: 500px; object-fit: cover; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <br>
+    </section>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <section class="buttons_values">
+        <div style="text-align:center; justify-content:center;">
+            <button id="review" class="btn btn-primary" style="margin-right:30px;">Review</button>
+        </div>
+        <br>
+    </section>
+
+    <section id="compose-review" style="margin-top:25px; display:none;">
+        <form id="compose-form" class="container">
+            <div class="form-group">
+                Write Your Review as <b>{{ request.user.username }}</b>
+            </div>
+            <textarea class="form-control" id="review-body" placeholder="Your Review" required></textarea>
+            <div class="form-group" style="margin-top: 15px;">
+                <label for="review-rating">Rate Your Experience:</label>
+                <div id="star-rating" class="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+                <input type="hidden" id="review-rating" name="review-rating" required>
+            </div>
+            <input type="submit" class="btn btn-primary" style="margin-top:10px;" />
+        </form>
+        <br>
+    </section>
+    {% else %}
+    <section class="buttons_values">
+        <div style="text-align:center; justify-content:center;">
+            <label>Wanna Write Your Review</label>
+            <a href="{% url 'login' %}">Click Here to login</a>
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="container">
+
+            <h1 style="color:green;">Comments:</h1>
+            <div id="avg-rating">
+            {% if avg_rating %}
+            {% if avg_rating >= 3.5 %}
+                <h2 style="color:green;">Average Rating: {{ avg_rating|floatformat:1 }} &#9733;</h2>
+            {% elif avg_rating > 2 %}
+                <h2 style="color:goldenrod;">Average Rating: {{ avg_rating|floatformat:1 }} &#9733;</h2>
+            {% else %}
+                <h2 style="color:red;">Average Rating: {{ avg_rating|floatformat:1 }} &#9733;</h2>
+            {% endif %}
+            {% endif %}
+            </div>
+            <div id="comments-section">
+
+            {% for comment in comments %}
+            <div style="border:3px; border-color:black; border-style:solid; margin-bottom:5px; border-radius:5px;">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 style="color:green; margin-left:10px; margin-top:5px;">{{ comment.user.username }}
+            {% if comment.rating >= 3.5 %}
+                <a style="color:green;">  <br>{{ comment.rating }} &#9733;</a>
+            {% elif comment.rating > 2 %}
+                <a style="color:goldenrod;"><br>{{ comment.rating }} &#9733;</a>
+            {% else %}
+                <a style="color:red;"><br>{{ comment.rating }} &#9733;</a>
+            {% endif %}
+
+        </h5>
+
+                            <a>{{ comment.time_ago }}</a>
+                        </div>
+
+
+                    <div style="text-align:left; justify-content:center; padding-left:10px;">
+                        <a style="color:black; margin-top:5px;">{{ comment.body }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <br>
+</div>
+
+<style>
+    .star-rating {
+        display: inline-flex;
+        gap: 5px;
+        cursor: pointer;
+        font-size: 24px;
+        color: #ddd;
+    }
+
+    .star-rating .star:hover,
+    .star-rating .star:hover ~ .star {
+        color: #ffc107;
+    }
+
+    .star-rating .star.selected {
+        color: #ffc107;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        document.querySelector('#review').addEventListener('click', function () {
+            document.querySelector('#compose-review').style.display = 'block';
+        });
+
+        const stars = document.querySelectorAll('.star-rating .star');
+        const ratingInput = document.getElementById('review-rating');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                stars.forEach(s => s.classList.remove('selected'));
+                star.classList.add('selected');
+                let previousSiblings = Array.from(star.parentNode.children).slice(0, Array.from(star.parentNode.children).indexOf(star));
+                previousSiblings.forEach(s => s.classList.add('selected'));
+                ratingInput.value = star.getAttribute('data-value');
+            });
+        });
+
+        document.querySelector('#compose-form').addEventListener('submit', add_review);
+    });
+
+    function add_review(event) {
+        event.preventDefault();
+        const body = document.querySelector('#review-body').value;
+        const rating = document.querySelector('#review-rating').value;
+        const csrfToken = '{{ csrf_token }}';
+
+        fetch(window.location.href, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify({
+                body: body,
+                rating: rating,
+                object_id: '{{ temple.id }}',
+                content_type_id: '{{ content_type.id }}',
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.querySelector('#review-body').value = '';
+                    document.querySelector('#compose-review').style.display = 'None';
+                    let no_of_comments = parseInt("{{ no_of_comments|default:0 }}");
+                    let sum_of_comments = parseFloat("{{ sum_of_comments|default:0 }}");
+                    sum_of_comments += parseFloat(data.comment.rating);
+                    no_of_comments += 1;
+                    let avg_rating_current = (sum_of_comments / no_of_comments).toFixed(1);
+                    let avg_rating_Section = document.querySelector("#avg-rating")
+                    avg_rating_Section.innerHTML =
+                    `<h2 style="color:${avg_rating_current>=3.5 ? 'green' : avg_rating_current > 2 ? 'goldenrod' : 'red'};">Average Rating: ${avg_rating_current} &#9733;</h2>`
+                    let commentsSection = document.querySelector("#comments-section")
+                    commentsSection.innerHTML =
+                        `<div style="border:3px; border-color:black; border-style:solid; margin-bottom:5px; border-radius:5px;">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 style="color:green; margin-left:10px; margin-top:5px;">
+                                ${data.comment.user}
+                                <a style="color: ${data.comment.rating >= 3.5 ? 'green' : data.comment.rating > 2 ? 'goldenrod' : 'red'};"><br>${data.comment.rating} &#9733;</a>
+                            </h5>
+                            <a>Just Now</a>
+                        </div>
+
+
+                    <div style="text-align:left; justify-content:center; padding-left:10px;">
+                        <a style="color:black; margin-top:5px;">${data.comment.body}</a>
+                    </div>
+                </div>
+            </div>` + commentsSection.innerHTML;
+            alert("Comment added successfully");
+                } else {
+                    alert('Error adding comment');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+{% endblock %}

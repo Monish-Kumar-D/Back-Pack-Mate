@@ -1,0 +1,47 @@
+{% extends 'BackpackMate/layout.html' %}
+
+{% block body %}
+<section class="container" style="text-align:center; align-items:center; margin-bottom:10px;">
+    <div style="min-height: 500px; text-align:center; margin-top:100px; margin-bottom:50px;">
+        <h2 style="color : green; margin-bottom:40px;">Let us Know about the Temple</h2>
+        <center>
+        <div style="width: 43vh; text-align:center; align-items:center; justify-content:center;">
+        <form action="{% url 'addnew_temple' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group" style="margin-bottom:20px;">
+                <input class="form-control" autofocus type="text" name="name" placeholder="Place of the name" required>
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+                <textarea class="form-control" type="text" name="description" placeholder="Write a Description" required></textarea>
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+                <textarea class="form-control" type="text" name="architecture" placeholder="Write about the architecture" required></textarea>
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+                <textarea class="form-control" type="text" name="major_high" placeholder="Explain a major highlight of this temple" required></textarea>
+            </div>
+            <div class="form-group">
+                <label style="color:green;"> Zip Code:</label>
+                <input type="number" class="form-control" id="zip_code" name="zip_code" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image" style="color:green;">Image:</label>
+                <input type="file" class="form-control" id="image" name="image" required>
+            </div>
+            <div class="form-group">
+                <label for="place" style="color:green;">Place:</label>
+                <select class="form-control" name="place" id="place">
+                    {% for place in places %}
+                        <option value="{{ place }}">{{ place }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="SUBMIT">
+        </form>
+        </div>
+        </center>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'BackpackMate/layout.html' %}
+
+{% block body %}
+<section style="background-color: rgb(252, 250, 240); padding: 20px; padding-top:35px;">
+    <div style="text-align: center; padding-top: 55px;">
+        <h1 style="color: green;">What you got for us today?</h1>
+    </div>
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: left; text-align: left;">
+        <div style="flex: 1 1 100%; margin-bottom: 20px; margin-top:55px;">
+            <h2>Disclaimer</h2>
+            <a>As an admin, it is crucial to ensure that all information provided is accurate and well-researched. Your suggestions will directly impact the quality and reliability of our platform. Please double-check all details, including names, descriptions, categories, and locations, before submitting any suggestions. Incorrect or misleading information can affect user trust and the overall credibility of our website. Thank you for your diligence and commitment to maintaining the highest standards of content quality.</a>
+        </div>
+            <div id= "temple" class="temple_card" style="flex: 1 1 45%; margin: 10px; position: relative; overflow: hidden; border-radius: 15px; height: 300px;">
+                <img src="static/images/gopuram.jpg" alt="Temple" class="temple_image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                <div class="info" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; border-radius: 15px; transition: opacity 0.3s;">
+                    <a href="{% url 'addnew_temple' %}"> <h2 style="margin: 0; padding: 0; color:white;">Temple</h2></a>
+                </div>
+            </div>
+            <div id= "beach" class="temple_card" style="flex: 1 1 45%; margin: 10px; position: relative; overflow: hidden; border-radius: 15px; height: 300px;">
+                <img src="static/images/Dhanushkodi.jpg" alt="Beach" class="temple_image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                <div class="info" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; border-radius: 15px; transition: opacity 0.3s;">
+                    <a href="{% url 'addnew_beach' %}"><h2 style="margin: 0; padding: 0; color:white;">Beach</h2></a>
+                </div>
+            </div>
+            <div id= "t-spots" class="temple_card" style="flex: 1 1 45%; margin: 10px; position: relative; overflow: hidden; border-radius: 15px; height: 300px;">
+                <img src="static/images/ooty1.png" alt="T-spots" class="temple_image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                <div class="info" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; border-radius: 15px; transition: opacity 0.3s;">
+                    <a href="{% url 'addnew_t_spots' %}"><h2 style="margin: 0; padding: 0; color:white;">Tourism spots</h2></a>
+                </div>
+            </div>
+            <div id= "h-centers" class="temple_card" style="flex: 1 1 45%; margin: 10px; position: relative; overflow: hidden; border-radius: 15px; height: 300px;">
+                <img src="static/images/Mahabalipuram.jpg" alt="Heritage Center" class="temple_image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                <div class="info" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; border-radius: 15px; transition: opacity 0.3s;">
+                   <a href="{% url 'addnew_heritage' %}"> <h2 style="margin: 0; padding: 0; color:white;">Heritage Center</h2></a>
+                </div>
+            </div>
+    </div>
+</section>
+
+<style>
+    .temple_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .temple_card:hover .info {
+        opacity: 1;
+        z-index: 1;
+    }
+    .temple_card:hover .temple_image {
+        filter: brightness(80%);
+        z-index: -1;
+    }
+    @media (max-width: 1000px) {
+        .temple_container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+{% endblock %}

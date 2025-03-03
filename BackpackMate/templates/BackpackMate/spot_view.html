@@ -1,0 +1,23 @@
+{% extends 'BackpackMate/layout.html' %}
+{% load static %}
+{% block body %}
+<div style="background-color: rgb(252, 250, 248); padding-top:25px; padding-bottom:25px;">
+<section style="padding: 20px;">
+    <div style="text-align: center; padding-top: 5rem;">
+        <h1 style="color: green;">{{ spot.name }}</h1>
+        <a> {{ spot.district }}</a>
+    </div>
+    <br>
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; text-align:justify;">
+        <div style="flex: 1 1 100%; margin: 10px; max-width: 600px;">
+            <a><strong>Description:</strong> {{ spot.description }}</a>
+        </div>
+        <div style="flex: 1;">
+            <img src="{{ spot.venue_img.url }}" alt="{{ center.name }}" class="center_image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+        </div>
+
+    </div>
+    <br>
+</section>
+</div>
+{% endblock %}

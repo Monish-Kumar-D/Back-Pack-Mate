@@ -1,0 +1,37 @@
+{% extends 'BackpackMate/layout.html' %}
+
+{% block body %}
+<section style="background-color: rgb(252, 250, 240); padding: 20px; padding-top:105px; height:540px;">
+    <div style="text-align: center; padding-top: 55px;">
+        <h1 style="color: green;">Thank You &#x2764;</h1>
+    </div>
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: left; text-align: left;">
+        <div style="flex: 1 1 100%; margin-bottom: 20px; margin-top:55px;">
+            <center><a>Your contributions are our secret sauce, making our website soar faster than a rocket on espresso. Thank you for your incredible support. We truly appreciate it and can't wait to see what you'll come up with next. Keep them coming, you're awesome!</a></center>
+</section>
+
+
+<style>
+    .temple_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .temple_card:hover .info {
+        opacity: 1;
+        z-index: 1;
+    }
+    .temple_card:hover .temple_image {
+        filter: brightness(80%);
+        z-index: -1;
+    }
+    @media (max-width: 1000px) {
+        .temple_container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+{% endblock %}
