@@ -1,4 +1,3 @@
-Here’s the updated documentation for **BackPackMate** with the recent changes such as timestamp addition, rating color-coding, and other relevant updates:
 
 ---
 
@@ -199,5 +198,5 @@ Key dependencies:
 
 ---
 
-**Thank you for exploring BackPackMate!**# Back-Pack-Mate
-"# Back-Pack-Mate" 
+**Thank you for exploring BackPackMate!**
+
