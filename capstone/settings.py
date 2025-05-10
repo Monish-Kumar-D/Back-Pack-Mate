@@ -25,9 +25,8 @@ SECRET_KEY = "django-insecure-a$0po-@*9h(oq6yf))o-$&*u4ov1#@e%uzdn-5$fwz(y^mt^uz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "https://back-pack-mate.onrender.com"
-]
+ALLOWED_HOSTS = ['back-pack-mate.onrender.com', 'www.back-pack-mate.onrender.com']
+
 
 
 # Application definition
