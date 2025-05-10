@@ -21,5 +21,8 @@ urlpatterns = [
     path("addnew/temple", views.addnew_temple, name='addnew_temple'),
     path("addnew/beach", views.addnew_beach, name='addnew_beach'),
     path("addnew/heritage", views.addnew_heritage, name='addnew_heritage'),
-    path("addnew/t_spots", views.addnew_t_spots, name='addnew_t_spots')
+    path("addnew/t_spots", views.addnew_t_spots, name='addnew_t_spots'),
+    path("places", views.place_list, name="place_list"),
+    path("district-autocomplete/", views.district_autocomplete, name="district_autocomplete"),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

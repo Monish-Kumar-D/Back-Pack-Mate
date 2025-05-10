@@ -13,7 +13,37 @@ from django.utils.timezone import now
 from django.db.models import Avg
 import json
 from . import models
+from django.db.models import Q
+from .forms import PlaceFilterForm
 
+
+def district_autocomplete(request):
+    query = request.GET.get("term", "")
+    districts = models.District.objects.filter(name__icontains=query).values_list('name', flat=True).distinct()
+    return JsonResponse(list(districts), safe=False)
+
+
+def place_list(request):
+    query = request.GET.get('q', '').lower()
+
+    if query:
+        temples = models.Temple.objects.filter(district__name__icontains=query)
+        heritages = models.Heritage_centers.objects.filter(district__name__icontains=query)
+        tourism_places = models.Tourism_place.objects.filter(district__name__icontains=query)
+        beaches = models.Beach.objects.filter(district__name__icontains=query)
+    else:
+        temples = models.Temple.objects.all()
+        heritages = models.Heritage_centers.objects.all()
+        tourism_places = models.Tourism_place.objects.all()
+        beaches = models.Beach.objects.all()
+
+    return render(request, "BackpackMate/place_list.html", {
+        "temples": temples,
+        "heritages": heritages,
+        "tourism_places": tourism_places,
+        "beaches": beaches,
+        "query": query or "none"
+    })
 
 
 def temples(request):
@@ -29,7 +59,7 @@ def temple_view(request, id):
         content_type = ContentType.objects.get_for_model(temple)
         comments = models.Comment.objects.filter(content_type=content_type, object_id=temple.id).order_by('-timestamp')
         avg_rating = comments.aggregate(Avg('rating'))['rating__avg']
-        no_of_comments =0
+        no_of_comments = 0
         sum_of_comments = 0
         for comment in comments:
             no_of_comments+=1
