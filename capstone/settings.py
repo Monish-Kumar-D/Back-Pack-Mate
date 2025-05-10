@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-a$0po-@*9h(oq6yf))o-$&*u4ov1#@e%uzdn-5$fwz(y^mt^uz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['back-pack-mate.onrender.com', 'www.back-pack-mate.onrender.com', 'localhost', '127.0.0.1']
 
