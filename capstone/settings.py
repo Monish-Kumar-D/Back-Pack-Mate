@@ -63,10 +63,18 @@ WSGI_APPLICATION = "capstone.wsgi.application"
 # Custom user model
 AUTH_USER_MODEL = "BackpackMate.User"
 
-# Database
+
 DATABASES = {
-    'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
+# # Database
+# DATABASES = {
+#     'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
