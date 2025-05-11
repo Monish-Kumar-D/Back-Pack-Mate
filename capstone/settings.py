@@ -7,11 +7,21 @@ import cloudinary.api
 
 import os
 
+
+# Cloudinary settings
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME','dy3ozktu1'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY','974733317868953'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET','VYBOqul6zCuXBEIColxrh94vnvo'),
+    'CLOUD_NAME': 'dy3ozktu1',
+    'API_KEY': '974733317868953',
+    'API_SECRET': 'VYBOqul6zCuXBEIColxrh94vnvo',
 }
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME','dy3ozktu1'),
+#     'API_KEY': os.environ.get('CLOUDINARY_API_KEY','974733317868953'),
+#     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET','VYBOqul6zCuXBEIColxrh94vnvo'),
+# }
 
 
 # Build paths inside the project
