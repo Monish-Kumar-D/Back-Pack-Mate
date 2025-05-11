@@ -8,9 +8,9 @@ import cloudinary.api
 import os
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('dy3ozktu1'),
-    'API_KEY': os.environ.get('974733317868953'),
-    'API_SECRET': os.environ.get('VYBOqul6zCuXBEIColxrh94vnvo'),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME','dy3ozktu1'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY','974733317868953'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET','VYBOqul6zCuXBEIColxrh94vnvo'),
 }
 
 
