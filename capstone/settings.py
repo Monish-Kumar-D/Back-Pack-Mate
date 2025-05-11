@@ -5,6 +5,14 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+import os
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('dy3ozktu1'),
+    'API_KEY': os.environ.get('974733317868953'),
+    'API_SECRET': os.environ.get('VYBOqul6zCuXBEIColxrh94vnvo'),
+}
+
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -109,12 +117,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Default auto field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-cloudinary.config(
-    cloud_name="dy3ozktu1",  # Replace with your Cloudinary cloud name
-    api_key="974733317868953",  # Replace with your Cloudinary API key
-    api_secret="VYBOqul6zCuXBEIColxrh94vnvo"  # Replace with your Cloudinary API secret
-)
 
 # Media files will be stored in Cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
