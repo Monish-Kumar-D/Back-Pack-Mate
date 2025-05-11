@@ -1,6 +1,10 @@
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "BackpackMate",
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -102,3 +108,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default auto field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+cloudinary.config(
+    cloud_name="dy3ozktu1",  # Replace with your Cloudinary cloud name
+    api_key="974733317868953",  # Replace with your Cloudinary API key
+    api_secret="VYBOqul6zCuXBEIColxrh94vnvo"  # Replace with your Cloudinary API secret
+)
+
+# Media files will be stored in Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
