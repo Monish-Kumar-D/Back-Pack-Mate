@@ -8,14 +8,14 @@ import cloudinary.api
 import os
 
 
-# Cloudinary settings
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dy3ozktu1',
-    'API_KEY': '974733317868953',
-    'API_SECRET': 'VYBOqul6zCuXBEIColxrh94vnvo',
-}
+# # Cloudinary settings
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'dy3ozktu1',
+#     'API_KEY': '974733317868953',
+#     'API_SECRET': 'VYBOqul6zCuXBEIColxrh94vnvo',
+# }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # CLOUDINARY_STORAGE = {
 #     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME','dy3ozktu1'),
@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-a$0po-@*9h(oq6yf))o-$&*u4ov1#@e%uzdn-5$fwz(y^mt^uz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'back-pack-mate.onrender.com',
@@ -128,6 +128,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# Media files will be stored in Cloudinary
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# # Media files will be stored in Cloudinary
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
