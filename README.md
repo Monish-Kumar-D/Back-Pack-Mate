@@ -1,5 +1,4 @@
 
----
 
 # **BackPackMate**
 
@@ -48,7 +47,14 @@ BackPackMate demonstrates significant technical depth across its backend and fro
 - **Responsive Design**:
   - Built with Bootstrap and custom CSS for mobile-friendly layouts and collapsible navigation.
 
-#### **3. Testing**:
+#### **3. Search and Filtering**
+
+- **Quick Search Functionality**: Real-time district filtering via JavaScript enhances discoverability.
+- **Search Suggestions**: Intelligent suggestions based on user input.
+
+
+
+#### **4. Testing**:
 - Comprehensive test cases using Django's `TestCase` framework validate:
   - Authentication workflows.
   - CRUD operations for various models.
@@ -56,6 +62,18 @@ BackPackMate demonstrates significant technical depth across its backend and fro
   - View responses and error handling.
 
 ---
+## Deployment
+
+The application is deployed on **Render** with:
+
+- PostgreSQL as the production database
+- Static and media file handling via Django settings
+- Proper ALLOWED_HOSTS configuration
+- Persistent data across restarts
+
+Live Link: [https://back-pack-mate.onrender.com](https://back-pack-mate.onrender.com)
+
+
 
 ## **File Structure**
 
@@ -94,6 +112,10 @@ BackPackMate demonstrates significant technical depth across its backend and fro
 
 ### **Admin Features**
 - Contributors can upload images, create detailed listings, and manage existing entries through the Django admin interface.
+
+### **Interactive District Filter**
+- Users can filter listings in real-time by typing district names.
+
 
 ---
 
@@ -161,6 +183,8 @@ python manage.py runserver
 ### **7. Access the Application**
 Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
+Live Link: [https://back-pack-mate.onrender.com](https://back-pack-mate.onrender.com)
+
 ---
 
 ## **Additional Information**
@@ -198,5 +222,4 @@ Key dependencies:
 
 ---
 
-**Thank you for exploring BackPackMate!**
-
+**Thank you for exploring BackPackMate!**# Back-Pack-Mate
